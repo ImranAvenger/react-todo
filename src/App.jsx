@@ -12,16 +12,16 @@ function App() {
     const newTask = {
       id: crypto.randomUUID(),
       text: task,
-    }
+    };
 
     setTodoList([...todoList, newTask]);
     setTask("");
   };
 
   const deleteSpecificTask = (id) => {
-    const updatedList = todoList.filter(list => list.id !== id);
+    const updatedList = todoList.filter((list) => list.id !== id);
     setTodoList(updatedList);
-  }
+  };
 
   return (
     <div className="flex flex-col text-center gap-10">
