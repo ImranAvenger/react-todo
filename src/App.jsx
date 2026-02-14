@@ -24,9 +24,9 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col text-center gap-10">
+    <div className="flex flex-col text-center gap-10 bg-white/20 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-2xl w-96">
       <h1 className="text-3xl">Todo List</h1>
-      <div>
+      <div className="">
         <TodoInput task={task} setTask={setTask} addTask={addTask} />
         <TodoList todoList={todoList} deleteSpecificTask={deleteSpecificTask} />
       </div>
