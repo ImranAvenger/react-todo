@@ -5,7 +5,6 @@ export default function TodoInput({ dispatch }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleAddTodo = (e) => {
-    // ফর্ম ব্যবহার করলে এন্টার চাপলে পেজ রিফ্রেশ হওয়া আটকাতে preventDefault ভালো
     if (e) e.preventDefault();
     if (inputValue.trim() === "") return;
 

@@ -28,13 +28,25 @@ function App() {
     }
   }, initialTodo);
 
-
   return (
-    <div className="flex flex-col text-center gap-10 bg-white/20 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-2xl w-96">
-      <h1 className="text-3xl">Todo List</h1>
-      <div className="">
-        <TodoInput dispatch={dispatch} />
-        <TodoList todoList={todoList} dispatch={dispatch} />
+    <div className="min-h-screen w-full flex items-center justify-center p-4">
+      <div className="flex flex-col gap-8 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-4xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] w-full max-w-100">
+        <h1 className="text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
+          Todo <span className="text-purple-400">List</span>
+        </h1>
+
+        <div className="flex flex-col gap-2">
+          <TodoInput dispatch={dispatch} />
+          <div className="max-h-125 overflow-y-auto pr-1 custom-scrollbar">
+            <TodoList todoList={todoList} dispatch={dispatch} />
+          </div>
+        </div>
+
+        {todoList.todos.length > 0 && (
+          <p className="text-white/40 text-sm italic text-center">
+            Total tasks: {todoList.todos.length}
+          </p>
+        )}
       </div>
     </div>
   );

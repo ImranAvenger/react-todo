@@ -4,5 +4,5 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  @apply flex items-center justify-center h-screen bg-gradient-to-t from-[#2dd4bf] via-[#22c55e] to-[#16a34a] ;
+  @apply flex items-center justify-center h-screen bg-linear-to-br from-[#0f172a] via-[#1e1b4b] to-[#581c87];
 }
