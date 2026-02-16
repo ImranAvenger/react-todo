@@ -13,7 +13,7 @@ export default function TodoItem({ item, dispatch }) {
         />
 
         <li
-          className={`list-none text-lg font-medium transition-all duration-500 break-words overflow-hidden flex-1 ${
+          className={`list-none text-lg font-medium transition-all duration-500 wrap-break-word overflow-hidden flex-1 ${
             item.completed
               ? "line-through text-white/30 italic"
               : "text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
