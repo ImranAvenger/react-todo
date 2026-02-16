@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4">
       <div className="flex flex-col gap-8 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-4xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] w-full max-w-100">
-        <h1 className="text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
+        <h1 className="text-center text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
           Todo <span className="text-purple-400">List</span>
         </h1>
 
