@@ -9,6 +9,7 @@ export default function TodoItem({ item, dispatch }) {
           className="w-5 h-5 cursor-pointer accent-purple-500 rounded border-none outline-none"
           checked={item.completed}
           onChange={() => dispatch({ type: "TOGGLE_TODO", payload: item })}
+          title={item.completed ? "Mark as incomplete" : "Mark as complete"}
         />
 
         <li
@@ -21,7 +22,7 @@ export default function TodoItem({ item, dispatch }) {
       </div>
 
       <button
-        className="text-white/50 hover:text-red-400 p-2 rounded-full hover:bg-red-500/10 transition-colors duration-200"
+        className="text-white/50 hover:text-red-400 cursor-pointer p-2 rounded-full hover:bg-red-500/10 transition-colors duration-200"
         onClick={() => dispatch({ type: "REMOVE_TODO", payload: item })}
         title="Delete task"
       >
