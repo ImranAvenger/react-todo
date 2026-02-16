@@ -31,6 +31,7 @@ export default function TodoInput({ dispatch }) {
       <button
         type="submit"
         className="cursor-pointer bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg transition-all active:scale-90 flex items-center justify-center ml-2 shadow-sm"
+        title="Add task"
       >
         <IoMdAdd size={24} />
       </button>
