@@ -4,8 +4,11 @@ import { IoMdAdd } from "react-icons/io";
 export default function TodoInput({ dispatch }) {
   const [inputValue, setInputValue] = useState("");
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (e) => {
+    // ফর্ম ব্যবহার করলে এন্টার চাপলে পেজ রিফ্রেশ হওয়া আটকাতে preventDefault ভালো
+    if (e) e.preventDefault();
     if (inputValue.trim() === "") return;
+
     const newTodo = {
       id: crypto.randomUUID(),
       text: inputValue,
@@ -16,19 +19,22 @@ export default function TodoInput({ dispatch }) {
   };
 
   return (
-    <div className="mb-2 border-black border-2 py-2 px-2 rounded-lg flex items-center">
+    <form
+      onSubmit={handleAddTodo}
+      className="mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-2 pl-4 rounded-xl flex items-center shadow-lg focus-within:bg-white/20 focus-within:border-white/40 transition-all duration-300"
+    >
       <input
-        className="focus:outline-none flex-1"
+        className="focus:outline-none flex-1 bg-transparent text-white placeholder:text-white/40 text-lg font-medium"
         value={inputValue}
-        placeholder="add task"
+        placeholder="Add a new task..."
         onChange={(e) => setInputValue(e.target.value)}
       />
       <button
-        className="cursor-pointer flex items-center justify-center"
-        onClick={handleAddTodo}
+        type="submit"
+        className="cursor-pointer bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg transition-all active:scale-90 flex items-center justify-center ml-2 shadow-sm"
       >
         <IoMdAdd size={24} />
       </button>
-    </div>
+    </form>
   );
 }
