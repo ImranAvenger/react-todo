@@ -1,9 +1,11 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
 function App() {
-  const initialTodo = { todos: [] };
+  const initialTodo = {
+    todos: JSON.parse(localStorage.getItem("my_todos")) || [],
+  };
 
   const [todoList, dispatch] = useReducer((state, action) => {
     switch (action.type) {
@@ -27,6 +29,10 @@ function App() {
         return state;
     }
   }, initialTodo);
+
+  useEffect(() => {
+    localStorage.setItem("my_todos", JSON.stringify(todoList.todos));
+  }, [todoList]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4">
