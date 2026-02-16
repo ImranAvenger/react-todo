@@ -1,34 +1,40 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
 function App() {
-  const [task, setTask] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  const initialTodo = { todos: [] };
 
-  const addTask = () => {
-    if (task.trim() === "") return;
+  const [todoList, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case "ADD_TODO":
+        return { ...state, todos: [...state.todos, action.payload] };
+      case "REMOVE_TODO":
+        return {
+          ...state,
+          todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+        };
+      case "TOGGLE_TODO":
+        return {
+          ...state,
+          todos: state.todos.map((todo) =>
+            todo.id === action.payload.id
+              ? { ...todo, completed: !todo.completed }
+              : todo,
+          ),
+        };
+      default:
+        return state;
+    }
+  }, initialTodo);
 
-    const newTask = {
-      id: crypto.randomUUID(),
-      text: task,
-    };
-
-    setTodoList([...todoList, newTask]);
-    setTask("");
-  };
-
-  const deleteSpecificTask = (id) => {
-    const updatedList = todoList.filter((list) => list.id !== id);
-    setTodoList(updatedList);
-  };
 
   return (
     <div className="flex flex-col text-center gap-10 bg-white/20 backdrop-blur-lg border border-white/30 rounded-2xl p-8 shadow-2xl w-96">
       <h1 className="text-3xl">Todo List</h1>
       <div className="">
-        <TodoInput task={task} setTask={setTask} addTask={addTask} />
-        <TodoList todoList={todoList} deleteSpecificTask={deleteSpecificTask} />
+        <TodoInput dispatch={dispatch} />
+        <TodoList todoList={todoList} dispatch={dispatch} />
       </div>
     </div>
   );
