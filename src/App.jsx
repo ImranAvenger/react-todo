@@ -39,7 +39,7 @@ function App() {
     // 'p-2' মোবাইলে গ্যাপ কমাবে, 'sm:p-4' বড় স্ক্রিনে গ্যাপ বাড়াবে
     <div className="h-screen w-full flex items-center justify-center p-2 sm:p-4 overflow-hidden font-sans text-white">
       {/* মোবাইলে 'rounded-3xl' এবং প্যাডিং 'p-5' করেছি যাতে স্ক্রিন স্পেস বাঁচে */}
-      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
+      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
         <div className="shrink-0">
           {/* হেডিং সাইজ মোবাইলে ছোট করা হয়েছে (text-3xl) */}
           <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-md mb-4 sm:mb-6">
