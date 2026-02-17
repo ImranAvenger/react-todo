@@ -4,8 +4,6 @@ export default function ProgressBar({ todoList }) {
   const progress =
     totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
 
-  if (totalTasks === 0) return null;
-
   return (
     <div className="mb-8 w-full animate-in fade-in slide-in-from-top duration-500">
       <div className="flex justify-between items-end mb-2">

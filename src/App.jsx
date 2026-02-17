@@ -1,10 +1,10 @@
-import { useEffect, useReducer, useState } from "react"; 
+import { useEffect, useReducer, useState } from "react";
 import ProgressBar from "./components/ProgressBar";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
 function App() {
-  const [filter, setFilter] = useState("All"); 
+  const [filter, setFilter] = useState("All");
 
   const initialTodo = {
     todos: JSON.parse(localStorage.getItem("my_todos")) || [],
@@ -28,7 +28,7 @@ function App() {
               : todo,
           ),
         };
-      case "CLEAR_ALL": 
+      case "CLEAR_ALL":
         return { ...state, todos: [] };
       default:
         return state;
