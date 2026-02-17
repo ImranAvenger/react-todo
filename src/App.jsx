@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+import ProgressBar from "./components/ProgressBar";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
@@ -40,6 +41,8 @@ function App() {
         <h1 className="text-center text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
           Todo <span className="text-purple-400">List</span>
         </h1>
+
+        <ProgressBar todoList={todoList.todos} />
 
         <div className="flex flex-col gap-2">
           <TodoInput dispatch={dispatch} />
