@@ -2,6 +2,8 @@ import { useEffect, useReducer, useState } from "react";
 import ProgressBar from "./components/ProgressBar";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [filter, setFilter] = useState("All");
@@ -51,9 +53,7 @@ function App() {
     <div className="h-screen w-sm md:w-md lg:w-lg flex items-center justify-center p-2 sm:p-4 overflow-hidden font-sans text-white">
       <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
         <div className="shrink-0">
-          <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-md mb-4 sm:mb-6">
-            Todo <span className="text-purple-400">List</span>
-          </h1>
+          <Header />
           <ProgressBar todoList={todoList.todos} />
           <TodoInput dispatch={dispatch} />
 
@@ -93,11 +93,7 @@ function App() {
           <TodoList todoList={filteredTodos} dispatch={dispatch} />
         </div>
 
-        <div className="shrink-0 pt-3 sm:pt-4 text-center border-t border-white/5 mt-2">
-          <p className="text-white/20 text-[10px] sm:text-xs uppercase tracking-widest">
-            Stay focused • Stay productive
-          </p>
-        </div>
+        <Footer />
       </div>
     </div>
   );
