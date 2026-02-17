@@ -6,22 +6,28 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
+  // 1. STATE: Track current filter view ('All', 'Active', 'Completed')
   const [filter, setFilter] = useState("All");
 
+  // 2. STORAGE: Initialize state from LocalStorage or default to empty array
   const initialTodo = {
     todos: JSON.parse(localStorage.getItem("my_todos")) || [],
   };
 
+  // 3. REDUCER: Centralized logic for modifying the Todo List
   const [todoList, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ADD_TODO":
+        // Add new item to the top of the list
         return { ...state, todos: [action.payload, ...state.todos] };
       case "REMOVE_TODO":
+        // Filter out the item with the matching ID
         return {
           ...state,
           todos: state.todos.filter((todo) => todo.id !== action.payload.id),
         };
       case "TOGGLE_TODO":
+        // Find the item and flip its 'completed' status
         return {
           ...state,
           todos: state.todos.map((todo) =>
@@ -31,32 +37,39 @@ function App() {
           ),
         };
       case "CLEAR_ALL":
+        // Reset list to empty
         return { ...state, todos: [] };
       default:
         return state;
     }
   }, initialTodo);
 
+  // 4. PERSISTENCE: Save to LocalStorage whenever the todoList state changes
   useEffect(() => {
     localStorage.setItem("my_todos", JSON.stringify(todoList.todos));
   }, [todoList]);
 
+  // 5. DERIVED STATE: Filter the list based on the user's selected tab
   const filteredTodos = {
     todos: todoList.todos.filter((t) => {
       if (filter === "Active") return !t.completed;
       if (filter === "Completed") return t.completed;
-      return true;
+      return true; // Returns all if filter is "All"
     }),
   };
 
   return (
+    /* MAIN WRAPPER: Full screen centering with responsive widths */
     <div className="h-screen w-sm md:w-md lg:w-lg flex items-center justify-center p-2 sm:p-4 overflow-hidden font-sans text-white">
+      {/* CARD CONTAINER: Glassmorphism effect (blur + transparency) */}
       <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
+        {/* TOP SECTION: Header, Progress, and Input */}
         <div className="shrink-0">
           <Header />
           <ProgressBar todoList={todoList.todos} />
           <TodoInput dispatch={dispatch} />
 
+          {/* TAB NAVIGATION: Filter buttons and Clear All */}
           <div className="flex items-center justify-between mt-6 px-1">
             <div className="flex gap-1 bg-black/20 p-1 rounded-xl border border-white/5">
               {["All", "Active", "Completed"].map((tab) => (
@@ -73,6 +86,8 @@ function App() {
                 </button>
               ))}
             </div>
+
+            {/* CLEAR ALL BUTTON: Only shows if there are tasks */}
             {todoList.todos.length > 0 && (
               <button
                 onClick={() =>
@@ -87,8 +102,11 @@ function App() {
           </div>
         </div>
 
+        {/* LIST SECTION: Scrollable area for the Todo items */}
         <div
-          className={`flex-1 items-center overflow-y-auto  pr-1 custom-scrollbar scroll-smooth ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}
+          className={`flex-1 items-center overflow-y-auto pr-1 custom-scrollbar scroll-smooth ${
+            filteredTodos.todos.length === 0 ? "content-center" : ""
+          }`}
         >
           <TodoList todoList={filteredTodos} dispatch={dispatch} />
         </div>
