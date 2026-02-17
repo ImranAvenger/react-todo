@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/ImranAvenger/react-todo/compare/v1.1.3...v1.2.0) (2026-02-17)
+
+
+### Features
+
+* add filtering and clear all functionality to todo list ([4da0f94](https://github.com/ImranAvenger/react-todo/commit/4da0f9480f9c7cef24f261da1341e0f290d2dd29))
+
 ### [1.1.3](https://github.com/ImranAvenger/react-todo/compare/v1.1.2...v1.1.3) (2026-02-17)
 
 
