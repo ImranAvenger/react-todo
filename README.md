@@ -1,6 +1,8 @@
 <div align="center">
 
-# ✅ React Todo App
+<img src="public/React%20Todo.png" alt="React Todo App Banner" width="100%" />
+
+# ✅ React Todo
 
 A modern, feature-rich task management application built with React 19 and Vite 7.
 
