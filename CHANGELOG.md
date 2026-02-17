@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/ImranAvenger/react-todo/compare/v1.1.2...v1.1.3) (2026-02-17)
+
+
+### Bug Fixes
+
+* correct class name for max-width in App component ([4f77802](https://github.com/ImranAvenger/react-todo/commit/4f778021f21352d53c5ca29c2339c7cc677ab594))
+
 ### [1.1.2](https://github.com/ImranAvenger/react-todo/compare/v1.1.1...v1.1.2) (2026-02-17)
 
 
