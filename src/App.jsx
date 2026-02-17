@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="h-screen w-full flex items-center justify-center p-4 overflow-hidden font-sans text-white">
-      <div className="flex flex-col bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 w-full max-w-md max-h-[85vh]">
+      <div className="flex flex-col bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 w-full w-md max-h-[85vh]">
         <div className="shrink-0">
           <h1 className="text-center text-4xl font-extrabold tracking-tight drop-shadow-md mb-6">
             Todo <span className="text-purple-400">List</span>
