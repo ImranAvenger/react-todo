@@ -11,7 +11,7 @@ function App() {
   const [todoList, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ADD_TODO":
-        return { ...state, todos: [...state.todos, action.payload] };
+        return { ...state, todos: [action.payload, ...state.todos] }; // নতুন টাস্ক উপরে আসবে
       case "REMOVE_TODO":
         return {
           ...state,
@@ -36,19 +36,22 @@ function App() {
   }, [todoList]);
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4">
-      <div className="flex flex-col gap-8 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-4xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] w-full max-w-100">
-        <h1 className="text-center text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
-          Todo <span className="text-purple-400">List</span>
-        </h1>
-
-        <ProgressBar todoList={todoList.todos} />
-
-        <div className="flex flex-col gap-2">
+    <div className="h-screen w-full flex items-center justify-center p-4 overflow-hidden font-sans text-white">
+      <div className="flex flex-col bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 w-full max-w-md max-h-[85vh]">
+        <div className="shrink-0">
+          <h1 className="text-center text-4xl font-extrabold tracking-tight drop-shadow-md mb-6">
+            Todo <span className="text-purple-400">List</span>
+          </h1>
+          <ProgressBar todoList={todoList.todos} />
           <TodoInput dispatch={dispatch} />
-          <div className="max-h-125 overflow-y-auto pr-1 custom-scrollbar">
-            <TodoList todoList={todoList} dispatch={dispatch} />
-          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto mt-6 pr-2 custom-scrollbar scroll-smooth">
+          <TodoList todoList={todoList} dispatch={dispatch} />
+        </div>
+
+        <div className="shrink-0 pt-4 text-center">
+          <p className="text-white/20 text-xs">Stay focused, stay productive</p>
         </div>
       </div>
     </div>
