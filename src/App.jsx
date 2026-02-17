@@ -11,7 +11,7 @@ function App() {
   const [todoList, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ADD_TODO":
-        return { ...state, todos: [action.payload, ...state.todos] }; // নতুন টাস্ক উপরে আসবে
+        return { ...state, todos: [action.payload, ...state.todos] };
       case "REMOVE_TODO":
         return {
           ...state,
@@ -36,22 +36,29 @@ function App() {
   }, [todoList]);
 
   return (
-    <div className="h-screen w-full flex items-center justify-center p-4 overflow-hidden font-sans text-white">
-      <div className="flex flex-col bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 w-full w-md max-h-[85vh]">
+    // 'p-2' মোবাইলে গ্যাপ কমাবে, 'sm:p-4' বড় স্ক্রিনে গ্যাপ বাড়াবে
+    <div className="h-screen w-full flex items-center justify-center p-2 sm:p-4 overflow-hidden font-sans text-white">
+      {/* মোবাইলে 'rounded-3xl' এবং প্যাডিং 'p-5' করেছি যাতে স্ক্রিন স্পেস বাঁচে */}
+      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
         <div className="shrink-0">
-          <h1 className="text-center text-4xl font-extrabold tracking-tight drop-shadow-md mb-6">
+          {/* হেডিং সাইজ মোবাইলে ছোট করা হয়েছে (text-3xl) */}
+          <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-md mb-4 sm:mb-6">
             Todo <span className="text-purple-400">List</span>
           </h1>
           <ProgressBar todoList={todoList.todos} />
           <TodoInput dispatch={dispatch} />
         </div>
 
-        <div className="flex-1 overflow-y-auto mt-6 pr-2 custom-scrollbar scroll-smooth">
+        <div
+          className={`flex-1 items-center overflow-y-auto  pr-1 custom-scrollbar scroll-smooth ${todoList.todos.length === 0 ? "content-center" : ""}`}
+        >
           <TodoList todoList={todoList} dispatch={dispatch} />
         </div>
 
-        <div className="shrink-0 pt-4 text-center">
-          <p className="text-white/20 text-xs">Stay focused, stay productive</p>
+        <div className="shrink-0 pt-3 sm:pt-4 text-center border-t border-white/5 mt-2">
+          <p className="text-white/20 text-[10px] sm:text-xs uppercase tracking-widest">
+            Stay focused • Stay productive
+          </p>
         </div>
       </div>
     </div>
