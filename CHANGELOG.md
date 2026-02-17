@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/ImranAvenger/react-todo/compare/v1.2.0...v1.2.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* remove unnecessary null return in ProgressBar component ([9e2e075](https://github.com/ImranAvenger/react-todo/commit/9e2e075ca32a09af0c988c24f5d7398e0969d501))
+
 ## [1.2.0](https://github.com/ImranAvenger/react-todo/compare/v1.1.3...v1.2.0) (2026-02-17)
 
 
