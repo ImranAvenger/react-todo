@@ -50,12 +50,6 @@ function App() {
             <TodoList todoList={todoList} dispatch={dispatch} />
           </div>
         </div>
-
-        {todoList.todos.length > 0 && (
-          <p className="text-white/40 text-sm italic text-center">
-            Total tasks: {todoList.todos.length}
-          </p>
-        )}
       </div>
     </div>
   );
