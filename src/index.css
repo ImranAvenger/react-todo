@@ -4,7 +4,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  @apply flex items-center justify-center h-screen bg-linear-to-br from-[#0f172a] via-[#1e1b4b] to-[#581c87];
+  @apply flex items-center justify-center bg-linear-to-br from-[#0f172a] via-[#1e1b4b] to-[#581c87];
 }
 
 .custom-scrollbar::-webkit-scrollbar {

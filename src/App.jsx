@@ -59,11 +59,11 @@ function App() {
   };
 
   return (
-    /* MAIN WRAPPER: Full screen centering with responsive widths */
-    <div className="h-screen flex items-center justify-center p-2 sm:p-4 overflow-hidden font-sans text-white">
-      {/* CARD CONTAINER: Glassmorphism effect (blur + transparency) */}
-      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-md h-full max-h-[95vh] sm:max-h-[85vh] transition-all duration-300">
-        {/* TOP SECTION: Header, Progress, and Input */}
+    /* MAIN WRAPPER: Fixed height এবং widths এড়িয়ে w-full ব্যবহার করা হয়েছে */
+    <div className="min-h-screen w-full flex items-center justify-center p-3 sm:p-6 font-sans text-white">
+      {/* CARD CONTAINER: Responsive max-widths এবং dynamic padding */}
+      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-112.5 h-[92vh] max-h-212.5 transition-all duration-300 shadow-2xl overflow-hidden">
+        {/* TOP SECTION: shrink-0 নিশ্চিত করে এটি সংকুচিত হবে না */}
         <div className="shrink-0">
           <Header />
           <ProgressBar todoList={todoList.todos} />
@@ -84,8 +84,7 @@ function App() {
                     onClick={() => setFilter(tab)}
                     role="tab"
                     aria-selected={isActive}
-                    className={`
-            whitespace-nowrap px-4 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300
+                    className={`whitespace-nowrap px-4 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300
             ${
               isActive
                 ? "bg-white text-black shadow-lg scale-95"
@@ -98,7 +97,6 @@ function App() {
                 );
               })}
             </div>
-
             {/* Clear All Button - Responsive width and better visibility */}
             {todoList.todos.length > 0 && (
               <button
@@ -117,9 +115,9 @@ function App() {
           </div>
         </div>
 
-        {/* LIST SECTION: Scrollable area for the Todo items */}
+        {/* LIST SECTION: flex-1 বাকি জায়গাটা নেবে এবং scrollable হবে */}
         <div
-          className={`flex-1 items-center overflow-y-auto custom-scrollbar scroll-smooth ${
+          className={`flex-1 overflow-y-auto mt-6 pr-1 custom-scrollbar scroll-smooth ${
             filteredTodos.todos.length === 0 ? "content-center" : ""
           }`}
         >
