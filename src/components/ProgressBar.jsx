@@ -16,8 +16,7 @@ export default function ProgressBar({ todoList }) {
 
   return (
     /* ANIMATED CONTAINER: Entrance animation (fade and slide) on mount */
-    <div className="mb-8 w-full animate-in fade-in slide-in-from-top duration-500">
-      {/* LABEL SECTION: Shows task counts and the large percentage text */}
+    <div className="mb-8 landscape:mb-2 lg:landscape:mb-8 w-full animate-in fade-in slide-in-from-top duration-500">
       <div className="flex justify-between items-end mb-2">
         <div>
           <h2 className="text-white text-sm font-semibold tracking-wide">
@@ -34,7 +33,6 @@ export default function ProgressBar({ todoList }) {
           </span>
         </div>
       </div>
-
       {/* TRACK: The background "well" of the progress bar */}
       <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden border border-white/5 backdrop-blur-sm p-0.5">
         {/* FILL: The actual colored bar that moves */}

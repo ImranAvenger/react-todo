@@ -6,125 +6,128 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
-  // 1. STATE: Track current filter view ('All', 'Active', 'Completed')
   const [filter, setFilter] = useState("All");
 
-  // 2. STORAGE: Initialize state from LocalStorage or default to empty array
   const initialTodo = {
     todos: JSON.parse(localStorage.getItem("my_todos")) || [],
   };
 
-  // 3. REDUCER: Centralized logic for modifying the Todo List
   const [todoList, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ADD_TODO":
-        // Add new item to the top of the list
         return { ...state, todos: [action.payload, ...state.todos] };
       case "REMOVE_TODO":
-        // Filter out the item with the matching ID
         return {
           ...state,
-          todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+          todos: state.todos.filter((t) => t.id !== action.payload.id),
         };
       case "TOGGLE_TODO":
-        // Find the item and flip its 'completed' status
         return {
           ...state,
-          todos: state.todos.map((todo) =>
-            todo.id === action.payload.id
-              ? { ...todo, completed: !todo.completed }
-              : todo,
+          todos: state.todos.map((t) =>
+            t.id === action.payload.id ? { ...t, completed: !t.completed } : t,
           ),
         };
       case "CLEAR_ALL":
-        // Reset list to empty
         return { ...state, todos: [] };
       default:
         return state;
     }
   }, initialTodo);
 
-  // 4. PERSISTENCE: Save to LocalStorage whenever the todoList state changes
   useEffect(() => {
     localStorage.setItem("my_todos", JSON.stringify(todoList.todos));
   }, [todoList]);
 
-  // 5. DERIVED STATE: Filter the list based on the user's selected tab
   const filteredTodos = {
     todos: todoList.todos.filter((t) => {
       if (filter === "Active") return !t.completed;
       if (filter === "Completed") return t.completed;
-      return true; // Returns all if filter is "All"
+      return true;
     }),
   };
 
   return (
-    /* MAIN WRAPPER: Fixed height এবং widths এড়িয়ে w-full ব্যবহার করা হয়েছে */
-    <div className="min-h-screen w-full flex items-center justify-center p-3 sm:p-6 font-sans text-white">
-      {/* CARD CONTAINER: Responsive max-widths এবং dynamic padding */}
-      <div className="flex flex-col bg-white/10 backdrop-blur-3xl border border-white/20 rounded-4xl sm:rounded-[2.5rem] p-5 sm:p-8 w-full max-w-112.5 h-[92vh] max-h-212.5 transition-all duration-300 shadow-2xl overflow-hidden">
-        {/* TOP SECTION: shrink-0 নিশ্চিত করে এটি সংকুচিত হবে না */}
-        <div className="shrink-0">
+    <div className="min-h-screen w-full flex items-center justify-center p-3 sm:p-6 font-sans text-white overflow-hidden">
+      {/* CARD CONTAINER: 
+          - Mobile: Full width/height 
+          - Landscape: Two columns, fixed height to force internal scrolling 
+      */}
+      <div
+        className="
+        flex flex-col 
+        landscape:grid landscape:grid-cols-[1fr_1.2fr] 
+        lg:grid lg:grid-cols-[1fr_1.2fr]
+        bg-white/10 backdrop-blur-3xl border border-white/20 
+        rounded-3xl sm:rounded-[2.5rem] 
+        w-full max-w-5xl 
+        h-[92vh] landscape:h-[85vh] lg:h-[80vh]
+        shadow-2xl overflow-hidden
+      "
+      >
+        {/* LEFT COLUMN: Input & Progress (Fixed) */}
+        <div className="flex flex-col p-6 sm:p-8 border-b landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
           <Header />
-          <ProgressBar todoList={todoList.todos} />
-          <TodoInput dispatch={dispatch} />
 
-          {/* TAB NAVIGATION & ACTION CONTAINER */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mt-8 px-1">
-            {/* Filter Tabs - Responsive container */}
+          {/* Progress bar hidden on very short screens to save space */}
+          <div className="hidden min-[380px]:block mt-4">
+            <ProgressBar todoList={todoList.todos} />
+          </div>
+
+          <div className="mt-6">
+            <TodoInput dispatch={dispatch} />
+          </div>
+
+          <div className="mt-auto pt-6 flex flex-wrap gap-3 items-center justify-around">
             <div
               role="tablist"
-              className="flex p-1 bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-lg w-fit mx-auto sm:mx-0"
+              className="flex p-1 bg-black/40 rounded-xl border border-white/10"
             >
-              {["All", "Active", "Completed"].map((tab) => {
-                const isActive = filter === tab;
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setFilter(tab)}
-                    role="tab"
-                    aria-selected={isActive}
-                    className={`whitespace-nowrap px-4 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300
-            ${
-              isActive
-                ? "bg-white text-black shadow-lg scale-95"
-                : "text-white/50 hover:text-white"
-            }
-          `}
-                  >
-                    {tab}
-                  </button>
-                );
-              })}
+              {["All", "Active", "Completed"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setFilter(tab)}
+                  className={`px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer 
+                    ${filter === tab ? "bg-white text-black" : "text-white/40 hover:text-white"}`}
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
-            {/* Clear All Button - Responsive width and better visibility */}
-            {todoList.todos.length > 0 && (
+
+            {
               <button
                 onClick={() =>
-                  window.confirm("Delete all tasks permanently?") &&
+                  window.confirm("Clear all?") &&
                   dispatch({ type: "CLEAR_ALL" })
                 }
-                // sm:w-auto keeps the button compact on larger screens and full-width or centered on mobile.
-                className="shrink-0 whitespace-nowrap flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 transition-all duration-200 w-fit mx-auto sm:mx-0 group"
+                className={`px-3 py-2 rounded-xl bg-red-500/10 ${todoList.todos.length === 0 ? 'opacity-50' : 'hover:bg-red-500/20 cursor-pointer'} border border-red-500/20 text-[10px] font-black uppercase text-red-400`}
+                disabled={todoList.todos.length === 0}
               >
-                <span className="text-[10px] sm:text-xs font-black uppercase tracking-tighter text-red-200">
-                  Clear All
-                </span>
+                Clear
               </button>
-            )}
+            }
           </div>
         </div>
 
-        {/* LIST SECTION: flex-1 বাকি জায়গাটা নেবে এবং scrollable হবে */}
-        <div
-          className={`flex-1 overflow-y-auto mt-6 pr-1 custom-scrollbar scroll-smooth ${
-            filteredTodos.todos.length === 0 ? "content-center" : ""
-          }`}
-        >
-          <TodoList todoList={filteredTodos} dispatch={dispatch} />
-        </div>
+        {/* RIGHT COLUMN: The scrollable list area */}
+        <div className="flex flex-col p-6 sm:p-8 h-full overflow-hidden bg-black/10">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-4 shrink-0">
+            {filter} Tasks ({filteredTodos.todos.length})
+          </h3>
 
-        <Footer />
+          {/* THE SCROLL ZONE: 
+              'flex-1' makes it take all remaining space.
+              'overflow-y-auto' ensures the scrollbar appears only here.
+          */}
+          <div className={`flex-1 overflow-y-auto pr-2 custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}>
+            <TodoList todoList={filteredTodos} dispatch={dispatch} />
+          </div>
+
+          <div className="mt-4 shrink-0">
+            <Footer />
+          </div>
+        </div>
       </div>
     </div>
   );
