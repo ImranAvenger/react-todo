@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/ImranAvenger/react-todo/compare/v1.2.1...v1.2.2) (2026-02-19)
+
+
+### Bug Fixes
+
+* enhance layout responsiveness and improve scrollbar styling ([6e7fa27](https://github.com/ImranAvenger/react-todo/commit/6e7fa277fc9d99b078d86e0ef990520d81cf8b17))
+* **layout:** 📱 resolve mobile landscape responsiveness and scroll issues ([75582cb](https://github.com/ImranAvenger/react-todo/commit/75582cbbf83a387850cdb31e594c171d7046ee22))
+* **layout:** enhance layout for better usability on short landscape screens ([337565a](https://github.com/ImranAvenger/react-todo/commit/337565a925cf7830f17bd4c854dd0a7cce55d026))
+* **layout:** improve layout responsiveness and adjust spacing for better usability ([67a2ec2](https://github.com/ImranAvenger/react-todo/commit/67a2ec2869eb68c0d09712705fb6df90b630212b))
+
 ### [1.2.1](https://github.com/ImranAvenger/react-todo/compare/v1.2.0...v1.2.1) (2026-02-17)
 
 
