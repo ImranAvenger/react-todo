@@ -9,6 +9,30 @@ body {
   @apply flex items-center justify-center bg-linear-to-br from-[#0f172a] via-[#1e1b4b] to-[#581c87];
 }
 
+/* ─── Short-landscape overrides ──────────────────────────────────────────────
+   Targets phones in landscape (iPhone SE: 375px tall, Z Fold cover: ~362px).
+   Defined AFTER @import "tailwindcss" so these rules win the cascade over
+   Tailwind utilities (same specificity, later position in stylesheet).
+   Tablets in landscape are ~768px+ tall and are unaffected.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (max-height: 450px) and (orientation: landscape) {
+  /* Use more of the tiny viewport */
+  .sl-card { height: 95vh; }
+
+  /* Compact column padding */
+  .sl-col { padding: 8px; }
+
+  /* Tighten vertical spacing */
+  .sl-input-wrap  { margin-top: 8px; }
+  .sl-filter-wrap { margin-top: 8px; padding-top: 0; }
+  .sl-task-count  { margin-bottom: 8px; }
+  .sl-footer-wrap { margin-top: 8px; }
+  .sl-form-mb     { margin-bottom: 8px; }
+
+  /* Compact header */
+  .sl-header { font-size: 1.25rem; line-height: 1.75rem; margin-bottom: 4px; }
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }

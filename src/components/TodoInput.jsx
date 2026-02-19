@@ -35,7 +35,7 @@ export default function TodoInput({ dispatch }) {
     /* FORM CONTAINER: Styled with glassmorphism and focus-aware borders */
     <form
       onSubmit={handleAddTodo}
-      className="mb-4 sm:mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-2 pl-4 rounded-xl flex items-center shadow-lg focus-within:bg-white/20 focus-within:border-white/40 transition-all duration-300"
+      className="sl-form-mb mb-4 sm:mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-2 pl-4 rounded-xl flex items-center shadow-lg focus-within:bg-white/20 focus-within:border-white/40 transition-all duration-300"
     >
       {/* INPUT FIELD: Controlled component linked to 'inputValue' state */}
       <input

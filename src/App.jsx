@@ -63,24 +63,24 @@ function App() {
         bg-white/10 backdrop-blur-3xl border border-white/20
         rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem]
         w-full max-w-5xl
-        h-[92vh] md:h-[85vh] landscape:h-[85vh] lg:h-[80vh]
+        h-[92vh] md:h-[85vh] landscape:h-[85vh] lg:h-[80vh] sl-card
         shadow-2xl overflow-hidden
       "
       >
         {/* LEFT COLUMN: Input & Progress (Fixed) */}
-        <div className="flex flex-col p-4 sm:p-6 lg:p-8 border-b md:border-b-0 md:border-r landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
+        <div className="sl-col flex flex-col p-4 sm:p-6 lg:p-8 border-b md:border-b-0 md:border-r landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
           <Header />
 
-          {/* Progress bar hidden on very short screens to save space */}
-          <div className="hidden min-[380px]:block mt-3 sm:mt-4">
+          {/* Progress bar */}
+          <div className="mt-3 sm:mt-4">
             <ProgressBar todoList={todoList.todos} />
           </div>
 
-          <div className="mt-4 sm:mt-6">
+          <div className="sl-input-wrap mt-4 sm:mt-6">
             <TodoInput dispatch={dispatch} />
           </div>
 
-          <div className="mt-4 sm:mt-auto sm:pt-6 landscape:mt-auto landscape:pt-6 md:mt-auto md:pt-6 flex flex-wrap gap-2 sm:gap-3 items-center justify-around">
+          <div className="sl-filter-wrap mt-4 sm:mt-auto sm:pt-6 landscape:mt-auto landscape:pt-6 md:mt-auto md:pt-6 flex flex-wrap gap-2 sm:gap-3 items-center justify-around">
             <div
               role="tablist"
               className="flex p-1 bg-black/40 rounded-xl border border-white/10"
@@ -113,8 +113,8 @@ function App() {
         </div>
 
         {/* RIGHT COLUMN: The scrollable list area */}
-        <div className="flex flex-col flex-1 min-h-0 p-4 sm:p-6 lg:p-8 overflow-hidden bg-black/10">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-4 shrink-0">
+        <div className="sl-col flex flex-col flex-1 min-h-0 p-4 sm:p-6 lg:p-8 overflow-hidden bg-black/10">
+          <h3 className="sl-task-count text-xs font-bold uppercase tracking-widest text-white/30 mb-4 shrink-0">
             {filter} Tasks ({filteredTodos.todos.length})
           </h3>
 
@@ -128,7 +128,7 @@ function App() {
             <TodoList todoList={filteredTodos} dispatch={dispatch} />
           </div>
 
-          <div className="mt-4 shrink-0">
+          <div className="sl-footer-wrap mt-4 shrink-0">
             <Footer />
           </div>
         </div>
