@@ -35,11 +35,11 @@ export default function TodoInput({ dispatch }) {
     /* FORM CONTAINER: Styled with glassmorphism and focus-aware borders */
     <form
       onSubmit={handleAddTodo}
-      className="mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-2 pl-4 rounded-xl flex items-center shadow-lg focus-within:bg-white/20 focus-within:border-white/40 transition-all duration-300"
+      className="mb-4 sm:mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-2 pl-4 rounded-xl flex items-center shadow-lg focus-within:bg-white/20 focus-within:border-white/40 transition-all duration-300"
     >
       {/* INPUT FIELD: Controlled component linked to 'inputValue' state */}
       <input
-        className="focus:outline-none flex-1 min-w-0 bg-transparent text-white placeholder:text-white/40 text-lg font-medium"
+        className="focus:outline-none flex-1 min-w-0 bg-transparent text-white placeholder:text-white/40 text-sm sm:text-base lg:text-lg font-medium"
         value={inputValue}
         placeholder="Add a new task..."
         onChange={(e) => setInputValue(e.target.value)}

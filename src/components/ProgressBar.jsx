@@ -16,7 +16,7 @@ export default function ProgressBar({ todoList }) {
 
   return (
     /* ANIMATED CONTAINER: Entrance animation (fade and slide) on mount */
-    <div className="mb-8 landscape:mb-2 lg:landscape:mb-8 w-full animate-in fade-in slide-in-from-top duration-500">
+    <div className="mb-4 sm:mb-6 landscape:mb-2 md:landscape:mb-6 lg:mb-6 w-full animate-in fade-in slide-in-from-top duration-500">
       <div className="flex justify-between items-end mb-2">
         <div>
           <h2 className="text-white text-sm font-semibold tracking-wide">

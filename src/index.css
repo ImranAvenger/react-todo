@@ -4,6 +4,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
   @apply flex items-center justify-center bg-linear-to-br from-[#0f172a] via-[#1e1b4b] to-[#581c87];
 }
 

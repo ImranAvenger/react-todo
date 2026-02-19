@@ -7,9 +7,9 @@ import { MdOutlineDelete } from "react-icons/md";
 export default function TodoItem({ item, dispatch }) {
   return (
     /* ITEM CONTAINER: Styled with glassmorphism, hover effects, and smooth transitions */
-    <div className="group flex items-center justify-between bg-white/10 hover:bg-white/20 backdrop-blur-md p-4 rounded-xl border border-white/10 transition-all duration-300 shadow-sm mb-3 gap-3">
+    <div className="group flex items-center justify-between bg-white/10 hover:bg-white/20 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 transition-all duration-300 shadow-sm mb-2 sm:mb-3 gap-2 sm:gap-3">
       {/* LEFT SECTION: Checkbox and Task Text */}
-      <div className="flex items-center gap-4 flex-1 min-w-0">
+      <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
         {/* CHECKBOX: Toggles the "completed" status via the reducer */}
         <input
           type="checkbox"
@@ -21,7 +21,7 @@ export default function TodoItem({ item, dispatch }) {
 
         {/* TASK TEXT: Dynamically changes style based on completion status */}
         <li
-          className={`list-none text-lg font-medium transition-all duration-500 wrap-break-word overflow-hidden flex-1 ${
+          className={`list-none text-sm sm:text-base font-medium transition-all duration-500 wrap-break-word overflow-hidden flex-1 ${
             item.completed
               ? "line-through text-white/30 italic" // Finished task style
               : "text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]" // Active task style

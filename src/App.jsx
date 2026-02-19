@@ -48,37 +48,39 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-3 sm:p-6 font-sans text-white overflow-hidden">
-      {/* CARD CONTAINER: 
-          - Mobile: Full width/height 
-          - Landscape: Two columns, fixed height to force internal scrolling 
+    <div className="min-h-screen w-full flex items-center justify-center p-2 sm:p-4 lg:p-6 font-sans text-white overflow-x-hidden">
+      {/* CARD CONTAINER:
+          - Mobile: Single column
+          - md+: Two columns
+          - Landscape: Two columns, fixed height to force internal scrolling
       */}
       <div
         className="
-        flex flex-col 
-        landscape:grid landscape:grid-cols-[1fr_1.2fr] 
+        flex flex-col
+        md:grid md:grid-cols-[1fr_1.2fr]
+        landscape:grid landscape:grid-cols-[1fr_1.2fr]
         lg:grid lg:grid-cols-[1fr_1.2fr]
-        bg-white/10 backdrop-blur-3xl border border-white/20 
-        rounded-3xl sm:rounded-[2.5rem] 
-        w-full max-w-5xl 
-        h-[92vh] landscape:h-[85vh] lg:h-[80vh]
+        bg-white/10 backdrop-blur-3xl border border-white/20
+        rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem]
+        w-full max-w-5xl
+        h-[92vh] md:h-[85vh] landscape:h-[85vh] lg:h-[80vh]
         shadow-2xl overflow-hidden
       "
       >
         {/* LEFT COLUMN: Input & Progress (Fixed) */}
-        <div className="flex flex-col p-6 sm:p-8 border-b landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
+        <div className="flex flex-col p-4 sm:p-6 lg:p-8 border-b md:border-b-0 md:border-r landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
           <Header />
 
           {/* Progress bar hidden on very short screens to save space */}
-          <div className="hidden min-[380px]:block mt-4">
+          <div className="hidden min-[380px]:block mt-3 sm:mt-4">
             <ProgressBar todoList={todoList.todos} />
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <TodoInput dispatch={dispatch} />
           </div>
 
-          <div className="mt-auto pt-6 flex flex-wrap gap-3 items-center justify-around">
+          <div className="mt-4 sm:mt-auto sm:pt-6 landscape:mt-auto landscape:pt-6 md:mt-auto md:pt-6 flex flex-wrap gap-2 sm:gap-3 items-center justify-around">
             <div
               role="tablist"
               className="flex p-1 bg-black/40 rounded-xl border border-white/10"
@@ -87,7 +89,7 @@ function App() {
                 <button
                   key={tab}
                   onClick={() => setFilter(tab)}
-                  className={`px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer 
+                  className={`px-3 py-2 sm:py-1.5 text-[11px] sm:text-[10px] font-bold uppercase rounded-lg transition-all cursor-pointer
                     ${filter === tab ? "bg-white text-black" : "text-white/40 hover:text-white"}`}
                 >
                   {tab}
@@ -111,7 +113,7 @@ function App() {
         </div>
 
         {/* RIGHT COLUMN: The scrollable list area */}
-        <div className="flex flex-col p-6 sm:p-8 h-full overflow-hidden bg-black/10">
+        <div className="flex flex-col flex-1 min-h-0 p-4 sm:p-6 lg:p-8 overflow-hidden bg-black/10">
           <h3 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-4 shrink-0">
             {filter} Tasks ({filteredTodos.todos.length})
           </h3>
