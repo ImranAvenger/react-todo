@@ -103,7 +103,7 @@ function App() {
                   window.confirm("Clear all?") &&
                   dispatch({ type: "CLEAR_ALL" })
                 }
-                className={`px-3 py-2 rounded-xl bg-red-500/10 ${todoList.todos.length === 0 ? 'opacity-50' : 'hover:bg-red-500/20 cursor-pointer'} border border-red-500/20 text-[10px] font-black uppercase text-red-400`}
+                className={`px-3 py-2 rounded-xl bg-red-500/10 ${todoList.todos.length === 0 ? "opacity-50" : "hover:bg-red-500/20 cursor-pointer"} border border-red-500/20 text-[10px] font-black uppercase text-red-400`}
                 disabled={todoList.todos.length === 0}
               >
                 Clear
@@ -122,7 +122,9 @@ function App() {
               'flex-1' makes it take all remaining space.
               'overflow-y-auto' ensures the scrollbar appears only here.
           */}
-          <div className={`flex-1 overflow-y-auto pr-2 custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}>
+          <div
+            className={`flex-1 overflow-y-auto pr-2 custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}
+          >
             <TodoList todoList={filteredTodos} dispatch={dispatch} />
           </div>
 
