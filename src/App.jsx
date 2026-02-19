@@ -100,7 +100,7 @@ function App() {
               'overflow-y-auto' ensures the scrollbar appears only here.
           */}
           <div
-            className={`flex-1 overflow-y-auto pr-2 custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}
+            className={`flex-1 overflow-y-auto custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : "pr-2"}`}
           >
             <TodoList todoList={filteredTodos} dispatch={dispatch} />
           </div>
