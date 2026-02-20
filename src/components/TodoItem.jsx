@@ -7,9 +7,9 @@ export default function TodoItem({ item, dispatch }) {
   const priorityCfg = PRIORITY_CONFIG[item.priority] ?? PRIORITY_CONFIG.Medium;
 
   return (
-    <div className="group flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 transition-all duration-300 shadow-sm mb-2 sm:mb-3 gap-2 sm:gap-3">
+    <div className="group overflow-hidden flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-md p-3 sm:p-4 landscape:p-3 rounded-xl border border-white/10 transition-all duration-300 shadow-sm mb-2 sm:mb-3 landscape:mb-2 gap-2 sm:gap-3 landscape:gap-2 w-78">
       {/* LEFT: Checkbox and Task Text */}
-      <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+      <div className="flex items-center gap-2 sm:gap-4 landscape:gap-2 flex-1 min-w-0">
         <input
           type="checkbox"
           className="w-5 h-5 cursor-pointer accent-purple-500 shrink-0 border-none outline-none"
@@ -18,7 +18,7 @@ export default function TodoItem({ item, dispatch }) {
           title={item.completed ? "Mark as incomplete" : "Mark as complete"}
         />
         <li
-          className={`list-none text-sm sm:text-base font-medium transition-all duration-500 wrap-break-word overflow-hidden flex-1 ${
+          className={`list-none text-sm sm:text-base font-medium transition-all duration-500 min-w-0 wrap-break-word overflow-hidden flex-1 ${
             item.completed
               ? "line-through text-white/30 italic"
               : "text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"

@@ -69,7 +69,7 @@ function App() {
       "
       >
         {/* LEFT COLUMN: Input & Progress (Fixed) */}
-        <div className="sl-col flex flex-col p-4 sm:p-6 lg:p-8 border-b md:border-b-0 md:border-r landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
+        <div className="sl-col min-w-0 flex flex-col p-4 sm:p-6 lg:p-8 border-b md:border-b-0 md:border-r landscape:border-b-0 landscape:border-r border-white/10 bg-white/5">
           <Header />
 
           {/* Progress bar */}
@@ -90,7 +90,7 @@ function App() {
         </div>
 
         {/* RIGHT COLUMN: The scrollable list area */}
-        <div className="sl-col flex flex-col flex-1 min-h-0 p-4 sm:p-6 lg:p-8 overflow-hidden bg-black/10">
+        <div className="sl-col min-w-0 flex flex-col flex-1 min-h-0 p-4 sm:p-6 lg:p-8 overflow-hidden bg-black/10">
           <h3 className="sl-task-count text-xs font-bold uppercase tracking-widest text-white/30 mb-4 shrink-0">
             {filter} Tasks ({filteredTodos.todos.length})
           </h3>
@@ -100,7 +100,7 @@ function App() {
               'overflow-y-auto' ensures the scrollbar appears only here.
           */}
           <div
-            className={`flex-1 overflow-y-auto custom-scrollbar ${filteredTodos.todos.length === 0 ? "content-center" : "pr-2"}`}
+            className={`flex-1 min-w-0 overflow-y-auto overflow-x-hidden custom-scrollbar pr-2 md:pr-0 ${filteredTodos.todos.length === 0 ? "content-center" : ""}`}
           >
             <TodoList todoList={filteredTodos} dispatch={dispatch} />
           </div>

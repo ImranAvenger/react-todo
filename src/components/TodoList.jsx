@@ -11,10 +11,10 @@ export default function TodoList({ todoList, dispatch }) {
   const todos = todoList?.todos || todoList || [];
 
   return (
-    <div className="mt-2 sm:mt-4">
+    <div className="flex flex-col w-full overflow-x-hidden mt-2 sm:mt-4 items-center">
       {/* 2. EMPTY STATE: Shown only when there are no tasks to display */}
       {todos.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-10 px-4 rounded-2xl bg-white/5 border border-dashed border-white/20 animate-pulse">
+        <div className="w-full flex flex-col items-center justify-center py-10 px-4 rounded-2xl bg-white/5 border border-dashed border-white/20 animate-pulse">
           <p className="text-white/40 text-base sm:text-lg font-medium tracking-wide italic">
             No tasks are there!
           </p>
